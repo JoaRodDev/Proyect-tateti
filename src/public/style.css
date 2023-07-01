@@ -1,0 +1,11 @@
+.tatetiItem{
+    border:solid 1px #222222;
+    height: 100px;
+    width: 100px;
+}
+
+.centerSelect{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

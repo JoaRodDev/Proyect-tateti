@@ -14,7 +14,10 @@ const path = require('path')
 app.use(express.static(path.join(__dirname,'public')))
 app.use(cors())
 //handlebars
-app.engine('hbs', hbs.engine({extname: 'hbs', defaultLayout: 'main', layoutDir: __dirname + '/views/layouts'}));
+app.engine('hbs', hbs.engine({
+    extname: 'hbs',
+    defaultLayout: 'main', 
+    layoutDir: __dirname + '/views/layouts'}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 

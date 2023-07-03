@@ -1,22 +1,22 @@
-(function(){
-    let game = false
 
-    function play(select){
+
+(function(){
+    /* function play(select){
         if (game === true) {
             select.innerHTML = `<h1>✖</h1>`
         } else {
             select.innerHTML = `<h1>⚪</h1>`
         }
-    }
+    } */
     
     //events
     function defineEvents(){
         let elements = document.querySelectorAll(".tatetiItem");
-    
         for (let i = 0; i < elements.length; i++) {
             let element = elements[i];
             element.addEventListener("click", function(){
-                play(this);
+                let position = this.id.split("-")[1]; //separates the element in two and returns the one in position one
+                socket.play(position);
             });    
         }
     }
@@ -28,7 +28,7 @@
     }
     
     function build_item(i){
-        return `<div id="elemento-${i}" class="centerSelect tatetiItem col-xs-2 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 "></div>`;
+        return `<div id="element-${i}" class="centerSelect tatetiItem col-xs-4 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 "></div>`;
     }
     
     function build_tateti(){
@@ -38,7 +38,22 @@
             defineEvents();
         }
     }
+    
+    function changeCharacter(flag) {
+        if(flag){
+            return "❌"
+        }
+        return "⭕"
+    }
+
     build_tateti();
 
+    let socket = new Socket(function(character, position){
+        console.log("element-"+position)
+        $("element-"+position).innerHTML = character;
+    }, function(position, character) {
+        $("element-"+position).innerHTML = changeCharacter(character);
+    },null, null);
+
 })();
-console.log(game)
+console.log("Hola mundo")

@@ -46,6 +46,14 @@
         return "⭕"
     }
 
+    function reset() {
+        let elements = document.querySelectorAll(".tatetiItem");
+        console.log(elements)
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].innerHTML = "";
+        }
+    }
+
     build_tateti();
 
     let socket = new Socket(function(character){
@@ -53,7 +61,9 @@
         //$("element-"+position).innerHTML = character;
     }, function(position, character) {
         $("element-"+position).innerHTML = changeCharacter(character);
-    },null, null);
+    },function(){
+        reset();
+    });
 
 })();
 console.log("Hola mundo")

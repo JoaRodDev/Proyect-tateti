@@ -6,7 +6,7 @@ const evaluator = require("./evaluator");
 const app = express();
 let io = socket_io();
 
-const busy_position = {};
+let busy_position = {};
 
 let character = true
 
@@ -17,7 +17,9 @@ io.on("connection", function(socket){
     //Guardar en un arreglo dentro de socket la lista de usuarios 
     //conectados y elegir con quien jugar
 
-    console.log(evaluator([2,4,7]))
+    //console.log(evaluator([2,4,7]))
+    busy_position = {};
+    socket.broadcast.emit("reset",{})
 
     socket.emit("init", {character: character})
     socket.character = character;
@@ -36,14 +38,13 @@ io.on("connection", function(socket){
             
             //Evaluator user won
             const evaluator_table = evaluator(socket.user_board)
-            console.log("resultado: "+ evaluator_table+" tablero:"+socket.user_board)
+            //console.log("resultado: "+ evaluator_table+" tablero:"+socket.user_board)
             if(evaluator_table){
                 console.log("Alguien ganó");
                 io.emit("won", {character: socket.character} )
             }
 
         } else {
-
             console.log("Alguien tiro en una posicion ocupada")
         }
     });

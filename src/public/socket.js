@@ -21,6 +21,10 @@ function Socket(winner, newMotion, restart){
             self.game = data.character;
         });
 
+    socket.on("reset", function(){
+        restart();
+    })
+
     socket.on("won", function(data){
         let characterWon = data.character;
         winner(characterWon)

@@ -1,13 +1,13 @@
 
 
 (function(){
-    /* function play(select){
+    function play(select){
         if (game === true) {
             select.innerHTML = `<h1>✖</h1>`
         } else {
             select.innerHTML = `<h1>⚪</h1>`
         }
-    } */
+    }
     
     //events
     function defineEvents(){
@@ -48,9 +48,9 @@
 
     build_tateti();
 
-    let socket = new Socket(function(character, position){
-        console.log("element-"+position)
-        $("element-"+position).innerHTML = character;
+    let socket = new Socket(function(character){
+        console.log("Alguien ganó")
+        //$("element-"+position).innerHTML = character;
     }, function(position, character) {
         $("element-"+position).innerHTML = changeCharacter(character);
     },null, null);

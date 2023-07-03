@@ -1,26 +1,33 @@
-function Socket(playing, newMoviment, restart){
+function Socket(winner, newMotion, restart){
     let game = true
     let socket = io();
     self = this;
 
+    self.character = function(){
+        console.log(self.game)
+        if (self.game === true) {
+            return "❌"
+        } else {
+            return "⭕"
+        }
+    }
     self.play = function(position){
-        socket.emit("new_moviment", {position: position});
-        playing(self.character(), position)
+        socket.emit("new_motion", {position: position});
+        //playing(self.character(), position)
     }
 
-    self.character = function(){
-        if(self.game){
-            return "❌"
-        }
-        return "⭕"
-    }
     socket.on("connect", function(){
         socket.on("init", function(data){
-            self.game = data.figure;
+            self.game = data.character;
         });
 
-        socket.on("moviment", function(data) {
-            newMoviment(data.position, data.character)
+    socket.on("won", function(data){
+        let characterWon = data.character;
+        winner(characterWon)
+    })
+
+        socket.on("motion", function(data) {
+            newMotion(data.position, data.character)
         });
 
     })

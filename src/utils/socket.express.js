@@ -7,6 +7,7 @@ const app = express();
 let io = socket_io();
 
 let busy_position = {};
+let turn = true;
 
 let character = true
 
@@ -31,19 +32,24 @@ io.on("connection", function(socket){
         //console.log(socket.character)
 
         if (!busy_position[data.position]) {
-            //evaluator busy position & send motion
-            socket.user_board.push(parseInt(data.position))
-            busy_position[data.position] = true;
-            io.emit("motion", { position: data.position, character: socket.character });
-            
-            //Evaluator user won
-            const evaluator_table = evaluator(socket.user_board)
-            //console.log("resultado: "+ evaluator_table+" tablero:"+socket.user_board)
-            if(evaluator_table){
-                console.log("Alguien ganó");
-                io.emit("won", {character: socket.character} )
-            }
 
+            //Turns Algorithm
+            if(turn === socket.character){
+                //evaluator busy position & send motion
+                socket.user_board.push(parseInt(data.position))
+                busy_position[data.position] = true;
+                io.emit("motion", { position: data.position, character: socket.character });
+                
+                //Evaluator user won
+                const evaluator_table = evaluator(socket.user_board)
+                if(evaluator_table){
+                    console.log("Alguien ganó");
+                    io.emit("won", {character: socket.character} )
+                }
+                turn = !turn
+            } else {
+                socket.emit("!turn", {});
+            }
         } else {
             console.log("Alguien tiro en una posicion ocupada")
         }

@@ -1,4 +1,4 @@
-function Socket(winner, newMotion, restart){
+function Socket(winner, newMotion, restart, turns, conect){
     let game = true
     let socket = io();
     self = this;
@@ -19,6 +19,8 @@ function Socket(winner, newMotion, restart){
     socket.on("connect", function(){
         socket.on("init", function(data){
             self.game = data.character;
+            console.log(self.game)
+            conect(self.character);
         });
 
     socket.on("reset", function(){
@@ -28,6 +30,11 @@ function Socket(winner, newMotion, restart){
     socket.on("won", function(data){
         let characterWon = data.character;
         winner(characterWon)
+        console.log(self.character+" A ganado!")
+    })
+
+    socket.on("!turn", function(data){
+        turns();
     })
 
         socket.on("motion", function(data) {

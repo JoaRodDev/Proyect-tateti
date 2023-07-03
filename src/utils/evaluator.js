@@ -1,4 +1,3 @@
-
 module.exports = function(user_board) {
 
     const combinations = [

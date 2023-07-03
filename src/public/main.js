@@ -1,5 +1,3 @@
-
-
 (function(){
     function play(select){
         if (game === true) {
@@ -47,8 +45,25 @@
     }
 
     function reset() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'success',
+            title: 'Alguien ingresó',
+            text: "Reiniciaremos el tablero...",
+          })
+
         let elements = document.querySelectorAll(".tatetiItem");
-        console.log(elements)
         for (let i = 0; i < elements.length; i++) {
             elements[i].innerHTML = "";
         }
@@ -57,12 +72,37 @@
     build_tateti();
 
     let socket = new Socket(function(character){
-        console.log("Alguien ganó")
+        let characterString = changeCharacter(character)
+        Swal.fire({
+            title: `${characterString} Ganó la partida`,
+            text: 'reinicia el juego!',
+            confirmButtonText:
+            '<a href="."><i class="fa fa-thumbs-up">reset</i></a>',
+            html:
+            '<b>Project made by</b>, ' +
+            '<a href="https://github.com/JoaRodDev/Proyect-tateti">Joaquín Rodríguez</a> ' +
+            '(View repository to GitHub)',
+          })
         //$("element-"+position).innerHTML = character;
     }, function(position, character) {
+        $("message").innerHTML = "<br> Es el turno de las "+ changeCharacter(!character);
         $("element-"+position).innerHTML = changeCharacter(character);
     },function(){
         reset();
+    }, function(){
+        Swal.fire({
+            icon: 'error',
+            title: 'Aún no es tu turno!',
+            text: 'Espera que finalice el turno del oponente',
+            footer: '<a href="https://github.com/JoaRodDev/Proyect-tateti">Reglas del juego</a>'
+          })
+    }, function(char){
+        $("message").innerHTML = "Te tocan las "+ char;
+        if(char == "❌"){
+            $("message").innerHTML = "<br> Es tu turno";
+        } else {
+            $("message").innerHTML = "<br> No es tu turno";
+        }
     });
 
 })();

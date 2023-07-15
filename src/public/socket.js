@@ -4,13 +4,14 @@ function Socket(winner, newMotion, restart, turns, conect){
     self = this;
 
     self.character = function(){
-        console.log(self.game)
         if (self.game === true) {
+            console.log(self.game)
             return "❌"
         } else {
             return "⭕"
         }
     }
+
     self.play = function(position){
         socket.emit("new_motion", {position: position});
         //playing(self.character(), position)
@@ -18,9 +19,10 @@ function Socket(winner, newMotion, restart, turns, conect){
 
     socket.on("connect", function(){
         socket.on("init", function(data){
+            console.log(data.character)
             self.game = data.character;
             console.log(self.game)
-            conect(self.character);
+            conect(self.character());
         });
 
     socket.on("reset", function(){

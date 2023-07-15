@@ -29,7 +29,7 @@ io.on("connection", function(socket){
     socket.user_board = [];
 
     socket.on("new_motion", function(data){
-        //console.log(socket.character)
+        console.log(socket.character)
 
         if (!busy_position[data.position]) {
 

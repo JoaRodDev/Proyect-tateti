@@ -25,17 +25,7 @@
         return document.getElementById(selector)
     }
     
-    function build_item(i){
-        return `<div id="element-${i}" class="centerSelect tatetiItem col-xs-4 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 "></div>`;
-    }
-    
-    function build_tateti(){
-        for(let i = 0; i<9; i++){
-            item = build_item(i)
-            $("tateti").innerHTML += item;
-            defineEvents();
-        }
-    }
+    defineEvents()
     
     function changeCharacter(flag) {
         if(flag){
@@ -69,15 +59,13 @@
         }
     }
 
-    build_tateti();
-
     let socket = new Socket(function(character){
         let characterString = changeCharacter(character)
         Swal.fire({
             title: `${characterString} Ganó la partida`,
             text: 'reinicia el juego!',
             confirmButtonText:
-            '<a href="."><i class="fa fa-thumbs-up">reset</i></a>',
+            '<a href="/"><i class="fa fa-thumbs-up">reset</i></a>',
             html:
             '<b>Project made by</b>, ' +
             '<a href="https://github.com/JoaRodDev/Proyect-tateti">Joaquín Rodríguez</a> ' +
@@ -97,6 +85,7 @@
             footer: '<a href="https://github.com/JoaRodDev/Proyect-tateti">Reglas del juego</a>'
           })
     }, function(char){
+        console.log(char)
         $("message").innerHTML = "Te tocan las "+ char;
         if(char == "❌"){
             $("message").innerHTML = "<br> Es tu turno";

@@ -3,9 +3,22 @@
     height: 100px;
     width: 100px;
 }
-
 .centerSelect{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.container_tateti{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.container_rows{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+.background_box{
+    color:antiquewhite;
 }

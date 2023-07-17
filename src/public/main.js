@@ -15,7 +15,7 @@
             element.addEventListener("click", function(){
                 let position = this.id.split("-")[1]; //separates the element in two and returns the one in position one
                 socket.play(position);
-            });    
+            });
         }
     }
     
@@ -35,24 +35,6 @@
     }
 
     function reset() {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 2000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-          })
-          
-          Toast.fire({
-            icon: 'success',
-            title: 'Alguien ingresó',
-            text: "Reiniciaremos el tablero...",
-          })
-
         let elements = document.querySelectorAll(".tatetiItem");
         for (let i = 0; i < elements.length; i++) {
             elements[i].innerHTML = "";
@@ -64,16 +46,16 @@
         Swal.fire({
             title: `${characterString} Ganó la partida`,
             text: 'reinicia el juego!',
-            confirmButtonText:
-            '<a href="/"><i class="fa fa-thumbs-up">reset</i></a>',
+            buttons: false,
             html:
             '<b>Project made by</b>, ' +
             '<a href="https://github.com/JoaRodDev/Proyect-tateti">Joaquín Rodríguez</a> ' +
-            '(View repository to GitHub)',
+            '(View repository to GitHub)' +
+            '<button class="button-89" href="/">reset</button>',
           })
         //$("element-"+position).innerHTML = character;
     }, function(position, character) {
-        $("message").innerHTML = "<br> Es el turno de las "+ changeCharacter(!character);
+        $("message").innerHTML = "<br> Es el turno de: "+ changeCharacter(!character);
         $("element-"+position).innerHTML = changeCharacter(character);
     },function(){
         reset();
@@ -82,17 +64,58 @@
             icon: 'error',
             title: 'Aún no es tu turno!',
             text: 'Espera que finalice el turno del oponente',
-            footer: '<a href="https://github.com/JoaRodDev/Proyect-tateti">Reglas del juego</a>'
           })
     }, function(char){
         console.log(char)
-        $("message").innerHTML = "Te tocan las "+ char;
+        $("message").innerHTML = "Te tocan: "+ char;
         if(char == "❌"){
             $("message").innerHTML = "<br> Es tu turno";
         } else {
             $("message").innerHTML = "<br> No es tu turno";
         }
-    });
+    },
+    function(char){
+        Swal.fire({
+            title: `Usted jugará con ${char}`,
+            input: 'text',
+            text: 'Ingresar el nombre de usuario.',
+            inputValidator: (value) => {
+                return !value && 'El nombre de usuario es obligatorio'
+            },
+            allowOutsideClick: false,
+            allowEscapeKey: false
+        }).then(result => {
+            user = result.value
+            socket.user(user)
+        })
+        const chatbox  = document.getElementById('chatbox')
+        chatbox.addEventListener('keyup', (evt) => {
+            if (evt.key==='Enter') {
+                if (chatbox.value.trim().length>0) {
+                    socket.chatbox(user, {message: chatbox.value});
+                    chatbox.value='';
+                }
+            }
+        })
+        }, function(dataUser, charUser){
+            console.log(charUser)
+            if(charUser === true){
+                charUser = "⭕"
+            } else {
+                charUser = "❌"
+            }
+            $("oponent").innerHTML = `<h3 class="text_oponent">Tu oponente es: <b>${dataUser} "${charUser}"</b></h3>`
+        },
+        function(data){
+            console.log(data)
+            //const log = document.getElementById('messageLogs')
+            let messages = ''
+            data.forEach(({user, message}) => {
+                messages += `<li class="message_li">${user} dice: ${message.message}}</li>`
+            })
+            $("messageLogs").innerHTML = messages
+        }
+        )
+    })();
 
-})();
 console.log("Hola mundo")

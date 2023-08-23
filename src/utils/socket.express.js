@@ -16,13 +16,10 @@ io.on("connection", function(socket){
     console.log("Nuevo cliente conectado")
 
     socket.on("message", data =>{
-        console.log(data)
         messages.push(data)
         io.emit("messageLogs", messages)
     })
-
     socket.on("authenticated", data =>{
-        console.log(data)
         socket.broadcast.emit("newUserConnected", data)
     })
     socket.emit("messageLogs", messages);
@@ -37,10 +34,7 @@ io.on("connection", function(socket){
     socket.user_board = [];
 
     socket.on("new_motion", function(data){
-        console.log(socket.character)
-
         if (!busy_position[data.position]) {
-
             //Turns Algorithm
             if(turn === socket.character){
                 //evaluator busy position & send motion

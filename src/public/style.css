@@ -6,17 +6,17 @@
 }
 
 html{
-    height: auto;
+    margin: 0;
     width: 100%;
+    height: 100%;
 }
 body {
     background-color: #111111;
     margin: 0;
     overflow-x: hidden;
     width: 100%;
+    height: 100%;
 }
-
-
 
 /* TITLE TATETI */
 
@@ -90,7 +90,7 @@ body {
     z-index: -1;
     filter: blur(5px);
     -webkit-filter: blur(5px);
-     width: calc(100% + 4px);
+    width: calc(100% + 4px);
     height: calc(100% + 4px);
     animation: glowing-button-85 20s linear infinite;
     transition: opacity 0.3s ease-in-out;
@@ -110,7 +110,7 @@ body {
 }
 
 .button-85:after {
-     z-index: -1;
+    z-index: -1;
     content: "";
     position: absolute;
     width: 100%;
@@ -118,12 +118,12 @@ body {
     background: #222;
     left: 0;
     top: 0;
-     border-radius: 10px;
+    border-radius: 10px;
 }
 
 .button-89 {
-  --b: 3px;   /* border thickness */
-  --s: .80em; /* size of the corner */
+  --b: 3px;
+  --s: .80em;
   --color: #373B44;
   padding: calc(.5em + var(--s)) calc(.9em + var(--s));
   color: var(--color);
@@ -194,22 +194,83 @@ body {
     margin: 10px 0px;
 }
 
+.body_game{
+  background-color: #373B44;
+}
+
+/* Navbar */
+.container_navbar{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  background-color: rgba(0, 0, 0, 0);
+}
+.icon_navbar{
+  font-size: 25px;
+  margin: 20px;
+}
+
 .container_game{
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    height: auto;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    height: 100%;
+}
+.title_InGame{
+  font-family: 'Tektur', cursive;
+  font-size: 70px;
+  color: #222222;
+  margin: 50px 0px;
+  animation: pulsate 1.5s infinite alternate;
+}
+.control_flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.cont_flex1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+.cont_flex2{
+  margin: 20px 20px;
+  width: 20%;
 }
 .tatetiItem{
     border:solid 1px #222222;
-    height: 100px;
-    width: 100px;
+    animation: pulsate 1.5s infinite alternate; 
+    box-shadow: 0 0 .2rem #fff,
+      0 0 .2rem #fff,
+      0 0 2rem #bc13fe,
+      0 0 0.8rem #bc13fe,
+      0 0 2.8rem #bc13fe,
+      inset 0 0 1.3rem #bc13fe; 
+    height: 200px;
+    width: 200px;
+    background-color: #d6d6d6;
 }
 .centerSelect{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.text_turns{
+  text-align: center;
+  font-family:'Times New Roman', Times, serif;
+  color: #999;
+  margin-bottom: 30px;
 }
 .container_tateti{
     display: flex;
@@ -224,6 +285,28 @@ body {
 }
 .background_box{
     color:antiquewhite;
+}
+.container_chatbox{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  border-radius: 2px;
+  border-width: 2px;
+  border-style: solid;
+  padding: 20px 30px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  background-color: #d6d6d6;
+  height: 400px;
+}
+.body_chatbox{
+  overflow-y: scroll;
+  height: auto;
+}
+.header_chatbox{
+  float: inline-start ;
+}
+.footer_chatbox{
+  align-self: center;
 }
 
 /* Efectss */
@@ -252,7 +335,46 @@ body {
     -o-animation:      vignette-anim 3s infinite; /* Opera 12+ */
     animation:         vignette-anim 3s infinite; /* IE 10+, Fx 29+ */
   }
-  
+
+  .neonText {
+    color: #fff;
+    text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #bc13fe,
+      0 0 82px #bc13fe,
+      0 0 92px #bc13fe,
+      0 0 102px #bc13fe,
+      0 0 151px #bc13fe;
+  }
+
+  @keyframes pulsate {
+
+    100% {
+        text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #bc13fe,
+        0 0 80px #bc13fe,
+        0 0 90px #bc13fe,
+        0 0 100px #bc13fe,
+        0 0 150px #bc13fe;
+    }
+    0% {
+      text-shadow:
+      0 0 2px #fff,
+      0 0 4px #fff,
+      0 0 6px #fff,
+      0 0 10px #bc13fe,
+      0 0 45px #bc13fe,
+      0 0 55px #bc13fe,
+      0 0 70px #bc13fe,
+      0 0 80px #bc13fe;
+  }
+}
+
 
 /* Medias queries */
 @-webkit-keyframes vignette-anim {
@@ -313,3 +435,41 @@ body {
       background-position: 50px 50px;
     }
   }
+
+/* media queries */
+
+@media (max-width: 1110px) {
+  html{
+    height: 100%;
+  }
+  body{
+    height: 100%;
+  }
+  .container_game{
+    height: auto;
+  }
+  .control_flex{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .cont_flex1{
+    width: 100%;
+  }
+  .cont_flex2{
+    width: 100%;
+  }
+  .tatetiItem{
+    height: 100px;
+    width: 100px;
+  }
+  .container_chatbox{
+    width: 60%;
+  }
+}
+@media (max-width: 535px) {
+  .container_chatbox{
+    width: 80%;
+  }
+}

@@ -43,7 +43,7 @@
 
     let socket = new Socket(function(character){
         let characterString = changeCharacter(character)
-        Swal.fire({
+        /* Swal.fire({
             title: `${characterString} Ganó la partida`,
             text: 'reinicia el juego!',
             buttons: false,
@@ -51,8 +51,31 @@
             '<b>Project made by</b>, ' +
             '<a href="https://github.com/JoaRodDev/Proyect-tateti">Joaquín Rodríguez</a> ' +
             '(View repository to GitHub)' +
-            '<button class="button-89" href="/">reset</button>',
-          })
+            '<a class="button-89" href="/">Reset</a>',
+          }) */
+
+          let timerInterval
+            Swal.fire({
+            title: `${characterString} ganó la partida!`,
+            html: 'Reiniciando partida... <b></b>',
+            timer: 4000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+                b.textContent = Swal.getTimerLeft()
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+            }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                location.replace('/');
+            }
+            })
         //$("element-"+position).innerHTML = character;
     }, function(position, character) {
         $("message").innerHTML = "<br> Es el turno de: "+ changeCharacter(!character);
@@ -111,7 +134,7 @@
             //const log = document.getElementById('messageLogs')
             let messages = ''
             data.forEach(({user, message}) => {
-                messages += `<li class="message_li">${user} dice: ${message.message}}</li>`
+                messages += `<li class="message_li">${user} dice: ${message.message}</li>`
             })
             $("messageLogs").innerHTML = messages
         }

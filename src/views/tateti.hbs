@@ -1,40 +1,49 @@
-<section class="container_game">
-            <div class="">
-                <div class="col-md-5 center-block text-center">
-                    <h1 class="title_tatati">Ta-Te-Ti</h1>
+<section class="body_game">
+    <nav class="container_navbar">
+        <div>
+            <a class="icon_navbar" href="/">⬅</a>
+        </div>
+    </nav>
+    <div class="container_game">
+        <div class="control_flex">
+            <div class="cont_flex1">
+                <div class="text-center">
+                    <h1 class=" neonText title_InGame">Ta-Te-Ti</h1>
                 </div>
                 <div>
-                    <h3 id="message"></h3>
+                    <h3 class="text_turns" id="message"></h3>
                 </div>
                 <div id="tateti" class="container_tateti">
                     <div class="container_rows">
-                        <div id="element-0" class="centerSelect tatetiItem col-xs-2 col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 "></div>
-                        <div id="element-1" class="centerSelect tatetiItem col-xs-2 col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 "></div>
-                        <div id="element-2" class="centerSelect tatetiItem col-xs-2 col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 "></div>
+                        <div id="element-0" class="centerSelect tatetiItem"></div>
+                        <div id="element-1" class="centerSelect tatetiItem "></div>
+                        <div id="element-2" class="centerSelect tatetiItem"></div>
                     </div>
                     <div class="container_rows">
-                        <div id="element-3" class="centerSelect tatetiItem col-xs-2 col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 "></div>
-                        <div id="element-4" class="centerSelect tatetiItem col-xs-2 col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 "></div>
-                        <div id="element-5" class="centerSelect tatetiItem col-xs-2 col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 "></div>
+                        <div id="element-3" class="centerSelect tatetiItem"></div>
+                        <div id="element-4" class="centerSelect tatetiItem"></div>
+                        <div id="element-5" class="centerSelect tatetiItem"></div>
                     </div>
                     <div class="container_rows">
-                        <div id="element-6" class="centerSelect tatetiItem col-xs-2 col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 "></div>
-                        <div id="element-7" class="centerSelect tatetiItem col-xs-2 col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 "></div>
-                        <div id="element-8" class="centerSelect tatetiItem col-xs-2 col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 "></div>
-                    </div>
-                </div>
-                <div class="container_chatbox">
-                    <header>
-                        <div id="oponent" class=""></div>
-                    </header>
-                    <div class="d-flex justify-content-center mt-3">
-                        <ul id="messageLogs"></ul>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <input type="text" name="chatbox" id="chatbox">
+                        <div id="element-6" class="centerSelect tatetiItem"></div>
+                        <div id="element-7" class="centerSelect tatetiItem"></div>
+                        <div id="element-8" class="centerSelect tatetiItem"></div>
                     </div>
                 </div>
             </div>
+            <div class="cont_flex2 container_chatbox">
+                <header class="header_chatbox">
+                    <div id="oponent" class=""><h4>Esperando oponente...</h4></div>
+                </header>
+                <div class="body_chatbox d-flex justify-content-center mt-3">
+                    <ul id="messageLogs"></ul>
+                </div>
+                <footer class="footer_chatbox d-flex justify-content-center">
+                    <input type="text" name="chatbox" id="chatbox">
+                </footer>
+            </div>
+        </div>
+    </div>
 </section>
 
 

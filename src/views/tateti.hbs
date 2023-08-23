@@ -1,0 +1,55 @@
+<section class="body_game">
+    <nav class="container_navbar">
+        <div>
+            <a class="icon_navbar" href="/">⬅</a>
+        </div>
+    </nav>
+    <div class="container_game">
+        <div class="control_flex">
+            <div class="cont_flex1">
+                <div class="text-center">
+                    <h1 class=" neonText title_InGame">Ta-Te-Ti</h1>
+                </div>
+                <div>
+                    <h3 class="text_turns" id="message"></h3>
+                </div>
+                <div id="tateti" class="container_tateti">
+                    <div class="container_rows">
+                        <div id="element-0" class="centerSelect tatetiItem"></div>
+                        <div id="element-1" class="centerSelect tatetiItem "></div>
+                        <div id="element-2" class="centerSelect tatetiItem"></div>
+                    </div>
+                    <div class="container_rows">
+                        <div id="element-3" class="centerSelect tatetiItem"></div>
+                        <div id="element-4" class="centerSelect tatetiItem"></div>
+                        <div id="element-5" class="centerSelect tatetiItem"></div>
+                    </div>
+                    <div class="container_rows">
+                        <div id="element-6" class="centerSelect tatetiItem"></div>
+                        <div id="element-7" class="centerSelect tatetiItem"></div>
+                        <div id="element-8" class="centerSelect tatetiItem"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_flex2 container_chatbox">
+                <header class="header_chatbox">
+                    <div id="oponent" class=""><h4>Esperando oponente...</h4></div>
+                </header>
+                <div class="body_chatbox d-flex justify-content-center mt-3">
+                    <ul id="messageLogs"></ul>
+                </div>
+                <footer class="footer_chatbox d-flex justify-content-center">
+                    <input type="text" name="chatbox" id="chatbox">
+                </footer>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.js" ></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="main.js"></script>
+<script src="chat.js"></script>

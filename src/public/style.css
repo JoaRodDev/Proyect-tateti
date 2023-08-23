@@ -196,6 +196,7 @@ body {
 
 .body_game{
   background-color: #373B44;
+  height: 100vh;
 }
 
 /* Navbar */
@@ -220,7 +221,6 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
 }
 .title_InGame{
   font-family: 'Tektur', cursive;
@@ -257,8 +257,8 @@ body {
       0 0 0.8rem #bc13fe,
       0 0 2.8rem #bc13fe,
       inset 0 0 1.3rem #bc13fe; 
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
     background-color: #d6d6d6;
 }
 .centerSelect{
@@ -445,8 +445,12 @@ body {
   body{
     height: 100%;
   }
-  .container_game{
+  .body_game{
     height: auto;
+  }
+  .container_game{
+    height: 100%;
+    padding: 0;
   }
   .control_flex{
     flex-direction: row;

@@ -4,6 +4,7 @@ const http = require("http")
 const router = require("./routes/index.router");
 const hbs = require('express-handlebars')
 const cors = require("cors")
+const path = require("path")
 require("dotenv").config()
 
 const PORT = process.env.PORT
